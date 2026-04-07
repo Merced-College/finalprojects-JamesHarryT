@@ -1,17 +1,71 @@
 /*
  * Name: Harrison Tinley
- * Date: 4/5/2026
+ * Date: 4/6/2026
  * CPSC-39
  * Media tracker program that tells user shows, movies, and games they have watched or want to watch.
  */
 
 package media_tracker_cpsc_39_final;
 
+import java.util.Scanner;
+
 public class Main {
+	
+	private static MediaManager mediaManager = new MediaManager();
 
 	public static void main(String[] args) {
-		System.out.println("I am working! YAY!");
+		Scanner scnr = new Scanner(System.in);
+		boolean running = true;
+		
+		while (running == true) {
+			System.out.println("\n--- Media Tracker ---");
+			System.out.println("1. Add Media");
+			System.out.println("2. Remove Media");
+			System.out.println("3. Edit Media");
+			System.out.println("4. View Media");
+			System.out.println("5. View All Media");
+			System.out.println("6. Exit");
+			System.out.println("Choose an option (type a number): ");
+			
+			int choice = scnr.nextInt();
+			scnr.nextLine();
+			
+			switch (choice) {
 
+				case 1:
+					mediaManager.addMedia(scnr);
+					break;
+	
+				case 2:
+					mediaManager.removeMedia(scnr);
+					break;
+	
+				case 3:
+					mediaManager.editMedia(scnr);
+					break;
+	
+				case 4:
+					mediaManager.viewMedia(scnr);
+					break;
+	
+				case 5:
+					mediaManager.printAllMedia();
+					break;
+	
+				case 6:
+					running = false;
+					System.out.println("Goodbye!");
+					break;
+	
+				default:
+					System.out.println("Invalid option.");
+			}
+			
+		}
+		
+		scnr.close();
+		
+		
 	}
 
 }

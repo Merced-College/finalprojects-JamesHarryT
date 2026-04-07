@@ -11,7 +11,7 @@ public class Media {
 	private String type;
 	private String notes;
 	private int rating;
-	private boolean hasWatched;
+	private boolean hasWatched; // also works as hasPlayed
 	
 	
 	//constructor method that sets all the variables.
