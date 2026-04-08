@@ -40,6 +40,7 @@ public class MediaManager {
 		Media m = new Media(title, type.toUpperCase(), notes, rating, hasWatched);
 		mediaList.add(m);
 		mediaMap.put(m.getTitle(), m);
+		CSVLoader.saveMedia(mediaList);
 	}
 	
 	// method for removing media, removes it from both the ArrayList and the HashMap.
