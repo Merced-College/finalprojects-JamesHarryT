@@ -19,6 +19,14 @@ public class MediaManager {
 		mediaMap = new HashMap<>();
 	}
 	
+	// method for setting data structures. Used to load the csv data onto these structures.
+	public void setMediaList(ArrayList<Media> list) {
+		for (Media m : list) {
+			mediaList.add(m);
+			mediaMap.put(m.getTitle(), m);
+		}
+	}
+	
 	// method for adding media, adds it to both the ArrayList and the HashMap.
 	public void addMedia(Scanner scnr) {
 		System.out.print("Title: ");
@@ -40,6 +48,7 @@ public class MediaManager {
 		Media m = new Media(title, type.toUpperCase(), notes, rating, hasWatched);
 		mediaList.add(m);
 		mediaMap.put(m.getTitle(), m);
+		
 		CSVLoader.saveMedia(mediaList);
 	}
 	
@@ -52,6 +61,8 @@ public class MediaManager {
 			mediaList.remove(m);
 			mediaMap.remove(title);
 		}
+		
+		CSVLoader.saveMedia(mediaList);
 	}
 	
 	//method that gets the media by title using the HashMap.
@@ -71,6 +82,9 @@ public class MediaManager {
 			return;
 		}
 		
+		System.out.print("New type: ");
+		m.setType(scnr.nextLine());
+		
 		System.out.print("New notes: ");
 		m.setNotes(scnr.nextLine());
 		
@@ -81,7 +95,7 @@ public class MediaManager {
 		m.setHasWatched(scnr.nextBoolean());
 		scnr.nextLine();
 		
-		System.out.println("Media updated successfully!");
+		CSVLoader.saveMedia(mediaList);
 	}
 	
 	

@@ -7,6 +7,7 @@
 
 package media_tracker_cpsc_39_final;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +17,10 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);
 		boolean running = true;
+		
+		
+		ArrayList<Media> list = CSVLoader.getLoadedMediaList();
+		mediaManager.setMediaList(list);
 		
 		while (running == true) {
 			System.out.println("\n--- Media Tracker ---");
