@@ -1,8 +1,10 @@
 /*
- * Name: Harrison Tinley
+ * Author: Harrison Tinley
  * Date: 4/6/2026
  * CPSC-39
- * Media tracker program that tells user shows, movies, and games they have watched or want to watch.
+ * 
+ * Class: Main.java
+ * Description: Main class to start program in terminal interface that sets  up everything.
  */
 
 package media_tracker_cpsc_39_final;
