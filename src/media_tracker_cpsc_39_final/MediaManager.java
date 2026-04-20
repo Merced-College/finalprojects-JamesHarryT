@@ -41,23 +41,21 @@ public class MediaManager {
 		String notes = scnr.nextLine();
 		
 		System.out.print("Rating: ");
-		int rating = scnr.nextInt();
+		int rating = getValidInt(scnr);
 		
 		System.out.print("Has watched or played (true/false): ");
-		boolean hasWatched = scnr.nextBoolean();
-		scnr.nextLine();
+		boolean hasWatched = getValidBoolean(scnr);
 		
-		char choice = 'b';
-		if (hasWatched == false) {
-			System.out.print("Add to top (type 't') or bottom (type 'b') of watchlist: ");
-			choice = scnr.nextLine().charAt(0);
-		}
+		
+		
 		
 		Media m = new Media(title, type.toUpperCase(), notes, rating, hasWatched);
 		mediaList.add(m);
 		mediaMap.put(m.getTitle(), m);
-		
-		watchQueue.addToWatchList(m, choice);
+		// if added media hasn't been watched -> add it to watchlist
+		if (hasWatched == false) {
+			watchQueue.addToWatchList(m, getValidChoice(scnr));
+		}
 		
 		CSVLoader.saveMedia(mediaList);
 	}
@@ -70,6 +68,7 @@ public class MediaManager {
 		if (m != null) { // if hashmap is storing the media, then remove it.
 			mediaList.remove(m);
 			mediaMap.remove(title);
+			watchQueue.removeFromWatchlist(m.getTitle());
 		}
 		
 		CSVLoader.saveMedia(mediaList);
@@ -83,7 +82,7 @@ public class MediaManager {
 	
 	public void editMedia(Scanner scnr) {
 		System.out.println("Enter title to edit: ");
-		String title = scnr.nextLine();
+		String title = scnr.nextLine().toUpperCase();
 		
 		Media m = getMedia(title);
 		
@@ -99,18 +98,75 @@ public class MediaManager {
 		m.setNotes(scnr.nextLine());
 		
 		System.out.print("New rating: ");
-		m.setRating(scnr.nextInt());
+		m.setRating(getValidInt(scnr));
 		
-		/*
 		System.out.print("Have Watched or Played (true/false): ");
-		m.setHasWatched(scnr.nextBoolean());
-		*/
+		boolean hasWatched = getValidBoolean(scnr);
+		boolean previousWatchState = m.getHasWatched();
+		m.setHasWatched(hasWatched);
 		
-		scnr.nextLine();
+		// if edited media has now been watched, remove it from watch list
+		if (hasWatched == true && previousWatchState == false) {
+			watchQueue.removeFromWatchlist(m.getTitle());
+		}
+		// adds to watch list if user edits hasWatched to false and gives them choice where to place media in watch list
+		else if (hasWatched == false) {
+			watchQueue.addToWatchList(m, getValidChoice(scnr));
+		}
 		
 		CSVLoader.saveMedia(mediaList);
 	}
 	
+	//method for getting valid integer so user can keep typing until correct value is entered
+	private int getValidInt(Scanner scnr) {
+		while (true) {
+			//if scnr has an int it can read then read it and stop the loop
+			if (scnr.hasNextInt()) {
+				int value = scnr.nextInt();
+				scnr.nextLine(); // clears newline
+				return value;
+			}
+			else {
+				System.out.print("Invalid number. Try again: ");
+				scnr.nextLine(); //gets rid of bad input.
+			}
+		}
+	}
+	
+	
+	// instead of using nextBoolean() this method allows multiple ways for user to express true or false
+	private boolean getValidBoolean(Scanner scnr) {
+		// loops through getting input until user types a correct input.
+		while (true) {
+			String input = scnr.nextLine().toLowerCase();
+			
+			// returns true if user enters true, yes, or y
+			if (input.equals("true") || input.equals("yes") || input.equals("y")) {
+				return true;
+			}
+			// returns false if user types false, no, or n
+			else if (input.equals("false") || input.equals("no") || input.equals("n")) {
+				return false;
+			}
+			else {
+				System.out.print("Enter (yes/no) (y/n) (true/false): ");
+			}
+		}
+	}
+	
+	private char getValidChoice(Scanner scnr) {
+		char choice = 'b';
+		while (true) {
+			System.out.print("Add to top (type 't') or bottom (type 'b') of watchlist: ");
+			choice = scnr.nextLine().charAt(0);
+			if (choice == 't' || choice == 'b') {
+				return choice;
+			}
+			else {
+				System.out.println("Invalid choice. Type (t/b)");
+			}
+		}
+	}
 	
 	public void viewMedia(Scanner scnr) {
 		System.out.println("Enter title: ");

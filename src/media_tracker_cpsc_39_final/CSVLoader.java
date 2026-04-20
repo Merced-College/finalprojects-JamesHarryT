@@ -12,7 +12,7 @@ public class CSVLoader {
 	
 	private static String filePath = "src/data/media.csv";
 	
-	//makes an ArrayList that loads media onto it and then this laoded media is transfered to the MediaManager mediaList.
+	//makes an ArrayList that loads media onto it and then this loaded media is transfered to the MediaManager mediaList.
 	private static ArrayList<Media> mediaList = new ArrayList<>();
 	
 	// method for saving media. Used whenever media is added, removed, or edited.
