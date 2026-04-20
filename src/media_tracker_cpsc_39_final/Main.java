@@ -29,9 +29,11 @@ public class Main {
 			System.out.println("1. Add Media");
 			System.out.println("2. Remove Media");
 			System.out.println("3. Edit Media");
-			System.out.println("4. View Media");
+			System.out.println("4. View One Media");
 			System.out.println("5. View All Media");
-			System.out.println("6. Exit");
+			System.out.println("6. View Watchlist");
+			System.out.println("7. Mark as Watched");
+			System.out.println("8. Exit");
 			System.out.println("Choose an option (type a number): ");
 			
 			int choice = scnr.nextInt();
@@ -56,10 +58,18 @@ public class Main {
 					break;
 	
 				case 5:
-					mediaManager.printAllMedia();
+					mediaManager.printAllMedia(scnr);
+					break;
+					
+				case 6:
+					System.out.println("working on this. . .");
+					break;
+
+				case 7:
+					System.out.println("working on this. . .");
 					break;
 	
-				case 6:
+				case 8:
 					running = false;
 					System.out.println("Goodbye!");
 					break;

@@ -107,6 +107,13 @@ public class MediaManager {
 		
 		if (m != null) {
 			System.out.println(m.toString());
+			
+			System.out.println("View notes? (y/n): ");
+			char choice = scnr.nextLine().charAt(0); //just gets first character to make it a char
+			if (choice == 'y' || choice == 'Y') {
+				System.out.println("Notes: " + m.getNotes());
+			}
+			
 		}
 		else {
 			System.out.println("Media not found.");
@@ -115,7 +122,33 @@ public class MediaManager {
 	
 	
 	//prints all the media, mainly will be used for testing to make sure everything is working right.
-	public void printAllMedia() {
+	public void printAllMedia(Scanner scnr) {
+		//prints and gets choice from user to determine how media will all be printed
+		System.out.printf("Sort by: \n1. Title (A-Z) \n2. Rating (High - Low) \n3. Rating (Low - High) \n4. Type \n");
+		int choice = scnr.nextInt();
+		scnr.nextLine();
+		
+		switch (choice) {
+			
+			case 1:
+				System.out.println("picked 1");
+				
+			case 2:
+				System.out.println("picked 2");
+				
+			case 3:
+				System.out.println("picked 3");
+				
+			case 4:
+				System.out.println("picked 4");
+			
+			default:
+				System.out.println("Invalid option.");
+		}
+		
+		
+		// since media list is sorted accordingly, now each media will be printed
+		
 		for (Media m : mediaList) {
 			System.out.println(m.toString());
 		}
