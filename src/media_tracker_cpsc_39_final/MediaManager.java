@@ -137,25 +137,29 @@ public class MediaManager {
 	//prints all the media, mainly will be used for testing to make sure everything is working right.
 	public void printAllMedia(Scanner scnr) {
 		//prints and gets choice from user to determine how media will all be printed
-		System.out.printf("Sort by: \n1. Title (A-Z) \n2. Rating (High - Low) \n3. Rating (Low - High) \n4. Type \n");
+		System.out.printf("Sort by: \n1. Title (A-Z) \n2. Title (Z-A) \n3. Rating (High - Low) \n4. Rating (Low - High) \n5. Type \n");
 		int choice = scnr.nextInt();
 		scnr.nextLine();
 		
 		switch (choice) {
 			
 			case 1:
-				sortByTitle();
+				sortByTitleAToZ();
 				break;
-				
+			
 			case 2:
-				sortByRatingHighToLow();
+				sortByTitleZToA();
 				break;
 				
 			case 3:
-				sortByRatingLowToHigh();
+				sortByRatingHighToLow();
 				break;
 				
 			case 4:
+				sortByRatingLowToHigh();
+				break;
+				
+			case 5:
 				sortByType();
 				break;
 				
@@ -172,9 +176,42 @@ public class MediaManager {
 	}
 	
 	// Algorithms for sorting media in the printAllMedia() function
+	// All use some variation of selection sort
 	
-	public void sortByTitle() {
-		System.out.println("Sorted by Title (A-Z)");
+	// selection sort comparing strings, whichever title is closer to 'a' gets swapped making it sorted alphabetically
+	public void sortByTitleAToZ() {
+		for (int i = 0; i < mediaList.size() - 1; i++) {
+			int min_index = i;
+			// goes through whole list comparing strings swapping them to become arranged alphabetically
+			for (int j = i + 1; j < mediaList.size(); j++) {
+				// if current title (j) is closer to 'a' than title at max_index, max_index will be set to j
+				if (mediaList.get(j).getTitle().compareToIgnoreCase(mediaList.get(min_index).getTitle()) < 0) {
+					min_index = j;
+				}
+			}
+			
+			Media temp = mediaList.get(min_index);
+			mediaList.set(min_index, mediaList.get(i));
+			mediaList.set(i, temp);
+		}
+	}
+	
+	// same logic as sort algorithm above but sign reversed to make it sorted Z->A instead
+	public void sortByTitleZToA() {
+		for (int i = 0; i < mediaList.size() - 1; i++) {
+			int max_index = i;
+			// goes through whole list comparing strings swapping them to become arranged alphabetically
+			for (int j = i + 1; j < mediaList.size(); j++) {
+				// if current title (j) is closer to 'z' than title at max_index, max_index will be set to j
+				if (mediaList.get(j).getTitle().compareToIgnoreCase(mediaList.get(max_index).getTitle()) > 0) {
+					max_index = j;
+				}
+			}
+			
+			Media temp = mediaList.get(max_index);
+			mediaList.set(max_index, mediaList.get(i));
+			mediaList.set(i, temp);
+		}
 	}
 	
 	// selection sort algorithm reversed in a way to make it highest to lowest
@@ -213,7 +250,20 @@ public class MediaManager {
 		}
 	}
 	
+	// same logic as sorting from A-Z but using the type of media instead of the title of it.
 	public void sortByType() {
-		System.out.println("Sorted by Type");
+		for (int i = 0; i < mediaList.size() - 1; i++) {
+			int min_index = i;
+			
+			for (int j = i + 1; j < mediaList.size(); j++) {
+				if (mediaList.get(j).getType().compareToIgnoreCase(mediaList.get(min_index).getType()) < 0) {
+					min_index = j;
+				}
+			}
+			
+			Media temp = mediaList.get(min_index);
+			mediaList.set(min_index, mediaList.get(i));
+			mediaList.set(i, temp);
+		}
 	}
 }
