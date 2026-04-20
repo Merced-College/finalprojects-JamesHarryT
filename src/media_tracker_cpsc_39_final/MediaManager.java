@@ -13,6 +13,8 @@ public class MediaManager {
 	private ArrayList<Media> mediaList; // useful for sorting most media
 	private HashMap<String, Media> mediaMap; // useful for searching most media
 	
+	private static WatchQueue watchQueue = new WatchQueue();
+	
 	// constructor to initialize the data structures.
 	public MediaManager() {
 		mediaList = new ArrayList<>();
@@ -45,9 +47,17 @@ public class MediaManager {
 		boolean hasWatched = scnr.nextBoolean();
 		scnr.nextLine();
 		
+		char choice = 'b';
+		if (hasWatched == false) {
+			System.out.print("Add to top (type 't') or bottom (type 'b') of watchlist: ");
+			choice = scnr.nextLine().charAt(0);
+		}
+		
 		Media m = new Media(title, type.toUpperCase(), notes, rating, hasWatched);
 		mediaList.add(m);
 		mediaMap.put(m.getTitle(), m);
+		
+		watchQueue.addToWatchList(m, choice);
 		
 		CSVLoader.saveMedia(mediaList);
 	}
@@ -131,17 +141,21 @@ public class MediaManager {
 		switch (choice) {
 			
 			case 1:
-				System.out.println("picked 1");
+				sortByTitle();
+				break;
 				
 			case 2:
-				System.out.println("picked 2");
+				sortByRatingHighToLow();
+				break;
 				
 			case 3:
-				System.out.println("picked 3");
+				sortByRatingLowToHigh();
+				break;
 				
 			case 4:
-				System.out.println("picked 4");
-			
+				sortByType();
+				break;
+				
 			default:
 				System.out.println("Invalid option.");
 		}
@@ -154,4 +168,21 @@ public class MediaManager {
 		}
 	}
 	
+	// Algorithms for sorting media in the printAllMedia() function
+	
+	public void sortByTitle() {
+		System.out.println("Sorted by Title (A-Z)");
+	}
+	
+	public void sortByRatingHighToLow() {
+		System.out.println("Sorted High to Low");
+	}
+	
+	public void sortByRatingLowToHigh() {
+		System.out.println("Sorted Low to High");
+	}
+	
+	public void sortByType() {
+		System.out.println("Sorted by Type");
+	}
 }

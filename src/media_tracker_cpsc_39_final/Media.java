@@ -65,7 +65,7 @@ public class Media {
 
 	@Override
 	public String toString() {
-		return title + " | " + type + " | Rating: " + rating + " | Status: " + hasWatched;
+		return title + " | " + type + " | Rating: " + rating + " | Watched/Played: " + hasWatched;
 	}
 	
 }

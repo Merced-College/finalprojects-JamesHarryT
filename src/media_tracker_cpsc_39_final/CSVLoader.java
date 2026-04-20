@@ -31,7 +31,7 @@ public class CSVLoader {
 					m.getRating() + "," +
 					m.getHasWatched()
 				);
-				System.out.println("I successfully saved");
+				//System.out.println("I successfully saved");
 			}
 			writer.close();
 			

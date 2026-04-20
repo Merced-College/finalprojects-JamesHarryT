@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class Main {
 	
 	private static MediaManager mediaManager = new MediaManager();
+	private static WatchQueue watchQueue = new WatchQueue();
 
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);
@@ -62,11 +63,14 @@ public class Main {
 					break;
 					
 				case 6:
-					System.out.println("working on this. . .");
+					watchQueue.printWatchList();
 					break;
 
 				case 7:
-					System.out.println("working on this. . .");
+					System.out.println("Enter title: ");
+					String title = scnr.nextLine();
+					watchQueue.removeFromWatchlist(title);
+					
 					break;
 	
 				case 8:
