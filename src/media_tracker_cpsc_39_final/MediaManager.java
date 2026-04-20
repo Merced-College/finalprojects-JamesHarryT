@@ -101,8 +101,11 @@ public class MediaManager {
 		System.out.print("New rating: ");
 		m.setRating(scnr.nextInt());
 		
+		/*
 		System.out.print("Have Watched or Played (true/false): ");
 		m.setHasWatched(scnr.nextBoolean());
+		*/
+		
 		scnr.nextLine();
 		
 		CSVLoader.saveMedia(mediaList);
@@ -174,12 +177,40 @@ public class MediaManager {
 		System.out.println("Sorted by Title (A-Z)");
 	}
 	
+	// selection sort algorithm reversed in a way to make it highest to lowest
 	public void sortByRatingHighToLow() {
-		System.out.println("Sorted High to Low");
+		for (int i = 0; i < mediaList.size() - 1; i++) {
+			int max_index = i;
+			// goes through whole list to find if any rating is higher than the current one
+			for (int j = i + 1; j < mediaList.size(); j++) {
+				if (mediaList.get(j).getRating() > mediaList.get(max_index).getRating()) {
+					max_index = j;
+				}
+			}
+			
+			// swaps biggest value found with current value found, if no bigger value found it doesn't do much.
+			Media temp = mediaList.get(max_index);
+			mediaList.set(max_index, mediaList.get(i));
+			mediaList.set(i, temp);
+		}
 	}
 	
+	// same logic as selection sort above but is done to sort lowest to highest
 	public void sortByRatingLowToHigh() {
-		System.out.println("Sorted Low to High");
+		for (int i = 0; i < mediaList.size() - 1; i++) {
+			int min_index = i;
+			// goes through whole list to find if any rating is lower than the current one
+			for (int j = i + 1; j < mediaList.size(); j++) {
+				if (mediaList.get(j).getRating() < mediaList.get(min_index).getRating()) {
+					min_index = j;
+				}
+			}
+			
+			// swaps smallest value found with current value found, if no smaller value found it doesn't do much.
+			Media temp = mediaList.get(min_index);
+			mediaList.set(min_index, mediaList.get(i));
+			mediaList.set(i, temp);
+		}
 	}
 	
 	public void sortByType() {
