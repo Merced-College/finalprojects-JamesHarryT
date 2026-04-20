@@ -1,4 +1,3 @@
-Title,Type,Notes,Rating,hasWatched/Played
-test1,GAME,testing my dude,10,true
-test2,SHOW,absolute terrible test,0,true
-test3,MOVIE,need to watch this test,2,false
+Title|Type|Notes|Rating|hasWatched/Played
+MINECRAFT|GAME|build, craft, fight, SURVIVE! Actually peak|10|true
+TERRARIA|GAME|better than Minecraft, sorry block lovers..|11|true

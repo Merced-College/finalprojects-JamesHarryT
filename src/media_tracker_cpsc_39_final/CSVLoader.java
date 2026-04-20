@@ -20,15 +20,15 @@ public class CSVLoader {
 		try {
 			FileWriter writer = new FileWriter(filePath); 
 			//opens new writer and overwrites previous one to refresh it completely whenever media is saved.
-			writer.write("Title,Type,Notes,Rating,hasWatched/Played"); //writes header for csv for users to read if they open the file.
+			writer.write("Title|Type|Notes|Rating|hasWatched/Played"); //writes header for csv for users to read if they open the file.
 			
-			
+			// separate values with "|" so commas and other characters can be used in strings
 			for (Media m : mediaList) {
 				writer.write(
-					"\n" + m.getTitle() + "," + 
-					m.getType().toUpperCase() + "," +
-					m.getNotes() + "," +
-					m.getRating() + "," +
+					"\n" + m.getTitle() + "|" + 
+					m.getType().toUpperCase() + "|" +
+					m.getNotes() + "|" +
+					m.getRating() + "|" +
 					m.getHasWatched()
 				);
 				//System.out.println("I successfully saved");
@@ -50,7 +50,7 @@ public class CSVLoader {
 			
 			// reads a new line and continues looping until no more lines are to be read.
 			while ((line = reader.readLine()) != null) {
-				String[] parts = line.split(","); //splits the line into parts using commas as a separator.
+				String[] parts = line.split("\\|"); //splits the line into parts using commas as a separator.
 				
 				String title = parts[0];
 				String type = parts[1];

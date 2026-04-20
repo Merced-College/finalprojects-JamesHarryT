@@ -32,7 +32,7 @@ public class MediaManager {
 	// method for adding media, adds it to both the ArrayList and the HashMap.
 	public void addMedia(Scanner scnr) {
 		System.out.print("Title: ");
-		String title = scnr.nextLine();
+		String title = scnr.nextLine().toUpperCase();
 		
 		System.out.print("Type: ");
 		String type = scnr.nextLine();
@@ -65,7 +65,7 @@ public class MediaManager {
 	// method for removing media, removes it from both the ArrayList and the HashMap.
 	public void removeMedia(Scanner scnr) {
 		System.out.print("Enter title to remove: ");
-		String title = scnr.nextLine();
+		String title = scnr.nextLine().toUpperCase();
 		Media m = mediaMap.get(title);
 		if (m != null) { // if hashmap is storing the media, then remove it.
 			mediaList.remove(m);
@@ -114,7 +114,7 @@ public class MediaManager {
 	
 	public void viewMedia(Scanner scnr) {
 		System.out.println("Enter title: ");
-		String title = scnr.nextLine();
+		String title = scnr.nextLine().toUpperCase();
 		
 		Media m = mediaMap.get(title);
 		
