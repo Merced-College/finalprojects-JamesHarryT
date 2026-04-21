@@ -34,6 +34,12 @@ public class MediaManager {
 		System.out.print("Title: ");
 		String title = scnr.nextLine().toUpperCase();
 		
+		// if mediaMap has a media with that title don't add it (duplicates ruin program logic)
+		if (mediaMap.containsKey(title) == true) {
+			System.out.println("Media with this title already exists. Try again.");
+			return;
+		}
+		
 		System.out.print("Type: ");
 		String type = scnr.nextLine();
 		
@@ -50,13 +56,15 @@ public class MediaManager {
 		
 		
 		Media m = new Media(title, type.toUpperCase(), notes, rating, hasWatched, -1);
+		
+		// media isn't a duplicate so add it correctly
 		mediaList.add(m);
 		mediaMap.put(m.getTitle(), m);
 		// if added media hasn't been watched -> add it to watchlist
 		if (hasWatched == false) {
 			watchQueue.addToWatchList(m, getValidChoice(scnr));
 		}
-		
+			
 		CSVLoader.saveMedia(mediaList);
 	}
 	

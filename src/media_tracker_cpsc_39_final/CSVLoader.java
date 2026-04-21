@@ -21,7 +21,7 @@ public class CSVLoader {
 		try {
 			FileWriter writer = new FileWriter(filePath); 
 			//opens new writer and overwrites previous one to refresh it completely whenever media is saved.
-			writer.write("Title|Type|Notes|Rating|hasWatched/Played"); //writes header for csv for users to read if they open the file.
+			writer.write("Title|Type|Notes|Rating|hasWatched/Played|WatchListIndex"); //writes header for csv for users to read if they open the file.
 			
 			// separate values with "|" so commas and other characters can be used in strings
 			for (Media m : mediaList) {
