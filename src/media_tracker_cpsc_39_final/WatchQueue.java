@@ -23,7 +23,14 @@ public class WatchQueue {
 		}
 	}
 	
-	// gets title and loops through watchList until finding the media, then when found it deletes
+	/*
+	 * Algorithm: Linear Search
+	 * Time Complexity: O(n)
+	 * 
+	 * This algorithm searches for a media item in watchList with the title given
+	 * by going through the list one by one until the correct title is found. Once
+	 * found the list removes that media item.
+	 */
 	public void removeFromWatchlist(String title) {
 		for (int i = 0; i < watchList.size(); i++) {
 			if (watchList.get(i).getTitle().equalsIgnoreCase(title)) {

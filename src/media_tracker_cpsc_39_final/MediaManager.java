@@ -82,7 +82,14 @@ public class MediaManager {
 		CSVLoader.saveMedia(mediaList);
 	}
 	
-	//method that gets the media by title using the HashMap.
+	/*
+	 * Algorithm: HashMap Search
+	 * Time Complexity: O(1)
+	 * 
+	 * This algorithm finds a specific key in the HashMap by calculating the key's hash code
+	 * and using buckets where this key's corresponding values are located. It returns media
+	 * very efficiently and is great for my search method.
+	 */
 	public Media getMedia(String title) {
 		return mediaMap.get(title);
 	}
@@ -242,7 +249,14 @@ public class MediaManager {
 	// Algorithms for sorting media in the printAllMedia() function
 	// All use some variation of selection sort
 	
-	// selection sort comparing strings, whichever title is closer to 'a' gets swapped making it sorted alphabetically
+	/*
+	 * Algorithm: Selection Sort (Title A-Z)
+	 * Time Complexity: O(n^2)
+	 * 
+	 * This algorithm sorts the media list in alphabetical order by title
+	 * by repeatedly finding the smallest element (letter closest to 'a' in the alphabet)
+	 * and swapping it.
+	 */
 	public void sortByTitleAToZ() {
 		for (int i = 0; i < mediaList.size() - 1; i++) {
 			int min_index = i;
@@ -260,7 +274,14 @@ public class MediaManager {
 		}
 	}
 	
-	// same logic as sort algorithm above but sign reversed to make it sorted Z->A instead
+	/*
+	 * Algorithm: Selection Sort (Title Z-A)
+	 * Time Complexity: O(n^2)
+	 * 
+	 * This algorithm sorts the media list in reverse alphabetically order by title
+	 * by repeatedly finding the biggest element (letter closest to 'z' in the alphabet)
+	 * and swapping it.
+	 */
 	public void sortByTitleZToA() {
 		for (int i = 0; i < mediaList.size() - 1; i++) {
 			int max_index = i;
@@ -278,7 +299,14 @@ public class MediaManager {
 		}
 	}
 	
-	// selection sort algorithm reversed in a way to make it highest to lowest
+	/*
+	 * Algorithm: Selection Sort (Rating High-Low)
+	 * Time Complexity: O(n^2)
+	 * 
+	 * This algorithm sorts the media list by rating from highest to lowest
+	 * by repeatedly finding the element with the highest rating
+	 * and swapping it.
+	 */
 	public void sortByRatingHighToLow() {
 		for (int i = 0; i < mediaList.size() - 1; i++) {
 			int max_index = i;
@@ -296,7 +324,14 @@ public class MediaManager {
 		}
 	}
 	
-	// same logic as selection sort above but is done to sort lowest to highest
+	/*
+	 * Algorithm: Selection Sort (Rating Low-High)
+	 * Time Complexity: O(n^2)
+	 * 
+	 * This algorithm sorts the media list by rating from lowest to highest
+	 * by repeatedly finding the element with the lowest rating
+	 * and swapping it.
+	 */
 	public void sortByRatingLowToHigh() {
 		for (int i = 0; i < mediaList.size() - 1; i++) {
 			int min_index = i;
@@ -314,7 +349,14 @@ public class MediaManager {
 		}
 	}
 	
-	// same logic as sorting from A-Z but using the type of media instead of the title of it.
+	/*
+	 * Algorithm: Selection Sort (Type A-Z)
+	 * Time Complexity: O(n^2)
+	 * 
+	 * This algorithm sorts the media list in alphabetical order by media type
+	 * by repeatedly finding the smallest element (letter closest to 'a' in the alphabet)
+	 * and swapping it.
+	 */
 	public void sortByType() {
 		for (int i = 0; i < mediaList.size() - 1; i++) {
 			int min_index = i;
