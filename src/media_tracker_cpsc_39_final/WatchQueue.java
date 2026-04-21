@@ -42,4 +42,14 @@ public class WatchQueue {
 			System.out.println(m.toString());
 		}
 	}
+	
+	// used when saving to find index of each item in the watch list
+	public int getIndex(Media m) {
+		return watchList.indexOf(m);
+	}
+	
+	// used when loading to set index properly for each media
+	public void setIndex(int index, Media m) {
+		watchList.add(index, m);
+	}
 }

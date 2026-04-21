@@ -49,7 +49,7 @@ public class MediaManager {
 		
 		
 		
-		Media m = new Media(title, type.toUpperCase(), notes, rating, hasWatched);
+		Media m = new Media(title, type.toUpperCase(), notes, rating, hasWatched, -1);
 		mediaList.add(m);
 		mediaMap.put(m.getTitle(), m);
 		// if added media hasn't been watched -> add it to watchlist

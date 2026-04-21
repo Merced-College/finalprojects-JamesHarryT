@@ -14,6 +14,7 @@ public class CSVLoader {
 	
 	//makes an ArrayList that loads media onto it and then this loaded media is transfered to the MediaManager mediaList.
 	private static ArrayList<Media> mediaList = new ArrayList<>();
+	private static WatchQueue watchQueue = new WatchQueue();
 	
 	// method for saving media. Used whenever media is added, removed, or edited.
 	public static void saveMedia(ArrayList<Media> mediaList) {
@@ -24,12 +25,20 @@ public class CSVLoader {
 			
 			// separate values with "|" so commas and other characters can be used in strings
 			for (Media m : mediaList) {
+				int watchListIndex = -1; // default is to not be in the watch list
+				
+				if (m.getHasWatched() == false) {
+					// media is not watched so find it's spot on the watchlist
+					watchListIndex = watchQueue.getIndex(m);
+				}
+				
 				writer.write(
 					"\n" + m.getTitle() + "|" + 
 					m.getType().toUpperCase() + "|" +
 					m.getNotes() + "|" +
 					m.getRating() + "|" +
-					m.getHasWatched()
+					m.getHasWatched() + "|" +
+					watchListIndex
 				);
 				//System.out.println("I successfully saved");
 			}
@@ -57,9 +66,14 @@ public class CSVLoader {
 				String notes = parts[2];
 				int rating = Integer.parseInt(parts[3]);
 				boolean hasWatched = Boolean.parseBoolean(parts[4]);
+				int watchListIndex = Integer.parseInt(parts[5]);
 				
-				Media m = new Media(title, type, notes, rating, hasWatched);
+				Media m = new Media(title, type, notes, rating, hasWatched, watchListIndex);
 				mediaList.add(m);
+				if (m.getWatchListIndex() != -1) {
+					// if the media was in the watchList with a valid index, load it in
+					watchQueue.setIndex(m.getWatchListIndex(), m);
+				}
 			}
 			
 			reader.close();

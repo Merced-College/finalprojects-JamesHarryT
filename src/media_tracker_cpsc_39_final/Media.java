@@ -12,15 +12,16 @@ public class Media {
 	private String notes;
 	private int rating;
 	private boolean hasWatched; // also works as hasPlayed
-	
+	private int watchListIndex; // purely for saving and loading the watchList
 	
 	//constructor method that sets all the variables.
-	public Media(String title, String type, String notes, int rating, boolean hasWatched) {
+	public Media(String title, String type, String notes, int rating, boolean hasWatched, int watchListIndex) {
 		this.title = title;
 		this.type = type.toUpperCase();
 		this.notes = notes;
 		this.rating = rating;
 		this.hasWatched = hasWatched;
+		this.watchListIndex = watchListIndex;
 	}
 	
 	public String getTitle() {
@@ -61,6 +62,14 @@ public class Media {
 	
 	public void setHasWatched(boolean hasWatched) {
 		this.hasWatched = hasWatched;
+	}
+	
+	public int getWatchListIndex() {
+		return watchListIndex;
+	}
+	
+	public void setWatchListIndex(int watchListIndex) {
+		this.watchListIndex = watchListIndex;
 	}
 
 	@Override
