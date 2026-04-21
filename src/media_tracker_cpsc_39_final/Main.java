@@ -37,8 +37,17 @@ public class Main {
 			System.out.println("8. Exit");
 			System.out.println("Choose an option (type a number): ");
 			
-			int choice = scnr.nextInt();
-			scnr.nextLine();
+			String input = scnr.nextLine();
+			int choice;
+			
+			// makes sure user enters an integer so program doesn't crash
+			try {
+				choice = Integer.parseInt(input);
+			}
+			catch (NumberFormatException e) {
+				System.out.println("Invalid input. Please enter a number (1-8)");
+				continue; //restarts loop 
+			}
 			
 			switch (choice) {
 

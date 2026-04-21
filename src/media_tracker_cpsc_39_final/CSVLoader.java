@@ -70,11 +70,20 @@ public class CSVLoader {
 				
 				Media m = new Media(title, type, notes, rating, hasWatched, watchListIndex);
 				mediaList.add(m);
+				
+			}
+			
+			//set up the watchlist in the correct order
+			sortByWatchListHighToLow();
+			
+			// adds the media in order as long as the index isn't equal to -1 (not in the watchlist)
+			for (Media m : mediaList) {
 				if (m.getWatchListIndex() != -1) {
-					// if the media was in the watchList with a valid index, load it in
-					watchQueue.setIndex(m.getWatchListIndex(), m);
+					watchQueue.addToWatchList(m, 't'); // since sorted, always add to top (lowest index is highest in the list)
 				}
 			}
+			
+			
 			
 			reader.close();
 			
@@ -90,4 +99,21 @@ public class CSVLoader {
 		return mediaList;
 	}
 
+	// selection sort method for mediaList by watchlist index from high to low so watchQueue can be loaded properly
+	public static void sortByWatchListHighToLow() {
+		for (int i = 0; i < mediaList.size() - 1; i++) {
+			int max_index = i;
+			// goes through whole list to find if any index is higher than the current one
+			for (int j = i + 1; j < mediaList.size(); j++) {
+				if (mediaList.get(j).getWatchListIndex() > mediaList.get(max_index).getWatchListIndex()) {
+					max_index = j;
+				}
+			}
+				
+			// swaps biggest value found with current value found, if no bigger value found it doesn't do much.
+			Media temp = mediaList.get(max_index);
+			mediaList.set(max_index, mediaList.get(i));
+			mediaList.set(i, temp);
+		}
+	}
 }

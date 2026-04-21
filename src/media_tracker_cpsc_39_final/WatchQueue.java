@@ -47,9 +47,4 @@ public class WatchQueue {
 	public int getIndex(Media m) {
 		return watchList.indexOf(m);
 	}
-	
-	// used when loading to set index properly for each media
-	public void setIndex(int index, Media m) {
-		watchList.add(index, m);
-	}
 }
