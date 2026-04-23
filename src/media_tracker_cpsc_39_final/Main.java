@@ -1,10 +1,12 @@
 /*
  * Author: Harrison Tinley
- * Date: 4/6/2026
+ * Date: 4/22/2026
  * CPSC-39
  * 
  * Class: Main.java
- * Description: Main class to start program in terminal interface that sets  up everything.
+ * Description: Main class to start program with a terminal-based interface. It connects the whole
+ * project together using the MediaManager and WatchQueue classes and gets input from the user
+ * to perform whatever action is asked.  
  */
 
 package media_tracker_cpsc_39_final;
@@ -16,7 +18,9 @@ public class Main {
 	
 	private static MediaManager mediaManager = new MediaManager();
 	private static WatchQueue watchQueue = new WatchQueue();
-
+	
+	
+	// called when running program
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);
 		boolean running = true;
@@ -25,6 +29,7 @@ public class Main {
 		ArrayList<Media> list = CSVLoader.getLoadedMediaList();
 		mediaManager.setMediaList(list);
 		
+		// cycles through menu options getting user input until the user types '8' and the program ends
 		while (running == true) {
 			System.out.println("\n--- Media Tracker ---");
 			System.out.println("1. Add Media");

@@ -3,6 +3,7 @@
  * Class WatchQueue.java
  * 
  * Description: this class handles the watchlist part of the program using a Queue data structure.
+ * It gives the option to add media items to the top or bottom of the watchlist based on input.
  */
 
 package media_tracker_cpsc_39_final;
@@ -44,6 +45,7 @@ public class WatchQueue {
 		System.out.println("Media not found in watchlist.");
 	}
 	
+	// goes through the watch list and prints each media one by one. Works because everything is sorted in the right way already.
 	public void printWatchList() {
 		for (Media m : watchList) {
 			System.out.println(m.toString());

@@ -1,6 +1,9 @@
 /*
  * Name: Harrison Tinley
- * Media class that defines what a media item is, has constructors and getters to help other classes.
+ * Class: Media.java
+ * 
+ * Description: Media class that defines what a media item is with a constructor. It also
+ * has setters and getters to help out other classes when needed.
  */
 
 package media_tracker_cpsc_39_final;

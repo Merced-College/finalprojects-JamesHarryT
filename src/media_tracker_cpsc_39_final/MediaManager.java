@@ -1,6 +1,10 @@
 /*
  * Name: Harrison Tinley
- * This class manages the media and helps with sorting them and everything.
+ * Class MediaManager.java
+ * 
+ * Description: This class manages all the user's media with an ArrayList<Media> and
+ * a HashMap<String, Media> where the media title is the key. It's used to perform most operations
+ * with changing media such as adding, removing, editing, printing, and sorting.
  */
 
 package media_tracker_cpsc_39_final;

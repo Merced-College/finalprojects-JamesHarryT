@@ -1,6 +1,10 @@
 /*
  * Name: Harrison Tinley
- * This class loads the CSV files and saves them so the user can pick up where they left off whenever they open the program.
+ * Class CSVLoader.java
+ * 
+ * Description: This class loads the media.csv file and saves it so the user can open up
+ * the program just as they left it. The methods separate values using the "|"
+ * character to allow users to type commas and other characters in their notes and titles.
  */
 
 package media_tracker_cpsc_39_final;
@@ -28,10 +32,11 @@ public class CSVLoader {
 				int watchListIndex = -1; // default is to not be in the watch list
 				
 				if (m.getHasWatched() == false) {
-					// media is not watched so find it's spot on the watchlist
+					// media is not watched so find it's spot on the watch list
 					watchListIndex = watchQueue.getIndex(m);
 				}
 				
+				// writes the values into the file so they can be retrieved on load.
 				writer.write(
 					"\n" + m.getTitle() + "|" + 
 					m.getType().toUpperCase() + "|" +
@@ -59,8 +64,9 @@ public class CSVLoader {
 			
 			// reads a new line and continues looping until no more lines are to be read.
 			while ((line = reader.readLine()) != null) {
-				String[] parts = line.split("\\|"); //splits the line into parts using commas as a separator.
+				String[] parts = line.split("\\|"); //splits the line into parts using '|' as a separator.
 				
+				// each value is retrieved from each part so that each media object can be created
 				String title = parts[0];
 				String type = parts[1];
 				String notes = parts[2];
@@ -73,7 +79,7 @@ public class CSVLoader {
 				
 			}
 			
-			//set up the watchlist in the correct order
+			//set up the watch list in the correct order
 			sortByWatchListHighToLow();
 			
 			// adds the media in order as long as the index isn't equal to -1 (not in the watchlist)
