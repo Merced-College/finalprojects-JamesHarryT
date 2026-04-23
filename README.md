@@ -13,6 +13,13 @@ Note: This was made in Eclipse so that's the recommended method. However, openin
 2. Run Main.java
 3. Follow the terminal prompts
 
+### Running in Codespaces
+1. Create codespace on main
+2. Go to src/media_tracker_cpsc_39_final/Main.java
+3. Press "Run and Debug" and download required extensions (should just be "Extension Pack for Java")
+4. Press "Run and Debug" again
+5. Follow the terminal prompts
+
 ## Features
 - Add, remove, and edit media
 - View individual media (to see notes)
