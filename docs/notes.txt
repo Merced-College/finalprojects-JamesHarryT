@@ -1,0 +1,9 @@
+Data Structures:
+- ArrayList (stores all media)
+- HashMap (fast searching by title)
+- LinkedList (watch list queue)
+
+Algorithms:
+- Selection sort (sorting media)
+- Linear Search (removing from watch list)
+- HashMap search (fast searching)
